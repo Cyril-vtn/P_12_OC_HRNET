@@ -2,6 +2,16 @@ input,
 select {
   margin-bottom: 0;
 }
+.employee-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .employee-table-container {
   width: 100%;
   overflow-x: auto;
