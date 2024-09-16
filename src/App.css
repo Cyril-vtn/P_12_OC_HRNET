@@ -71,11 +71,10 @@ select,
   color: #ffffff;
   border: 1px solid #4a4a4a;
   border-radius: 4px;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
+  padding: 0.5rem;
   font-size: 1rem;
   transition: border-color 0.3s ease;
-  height: 50px;
+  height: 40px;
 }
 
 input:focus,
@@ -102,7 +101,6 @@ button:hover {
 }
 
 .form-group {
-  /* margin-bottom: 1.5rem; */
   flex: 1;
 }
 
@@ -119,6 +117,6 @@ button:hover {
   }
 
   .form-row > * {
-    width: 100%; /* Add this block */
+    width: 100%;
   }
 }
