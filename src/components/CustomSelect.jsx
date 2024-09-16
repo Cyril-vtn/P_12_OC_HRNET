@@ -64,7 +64,7 @@ const CustomSelect = ({
 };
 
 CustomSelect.propTypes = {
-  label: PropTypes.string, // Remove .isRequired
+  label: PropTypes.string,
   options: PropTypes.array.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,

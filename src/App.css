@@ -26,6 +26,10 @@ h2 {
   font-size: 2.5rem;
 }
 
+.street-label {
+  margin-top: 0;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -49,11 +53,26 @@ label {
   color: #ecf0f1;
   text-align: left;
 }
-
+.save-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+.save-button:hover {
+  background-color: #555;
+}
 .address {
   padding: 1rem;
   border: 1px solid #3a3a3a;
   border-radius: 8px;
+  margin-top: 1rem;
 }
 
 .address legend {
@@ -83,21 +102,21 @@ select:focus {
   border-color: #6b7280;
 }
 
-button {
-  background-color: #4b5563;
-  color: #ffffff;
+.modal-content button {
+  background-color: #333;
+  color: #fff;
   border: none;
-  padding: 0.8em 1.5em;
-  font-size: 1.1em;
-  font-weight: 600;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.25s;
-  margin-top: 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
 }
 
-button:hover {
-  background-color: #374151;
+.modal-content button:hover {
+  background-color: #555;
 }
 
 .form-group {

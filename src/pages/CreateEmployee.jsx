@@ -87,7 +87,9 @@ const CreateEmployee = () => {
         <fieldset className="address">
           <legend>Address</legend>
           <div className="form-group">
-            <label htmlFor="street">Street</label>
+            <label className="street-label" htmlFor="street">
+              Street
+            </label>
             <input
               type="text"
               id="street"
@@ -139,7 +141,9 @@ const CreateEmployee = () => {
           position="top"
         />
       </form>
-      <button onClick={saveEmployee}>Save</button>
+      <button className="save-button" onClick={saveEmployee}>
+        Save
+      </button>
 
       <Modal
         isOpen={isModalOpen}
