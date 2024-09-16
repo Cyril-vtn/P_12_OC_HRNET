@@ -1,20 +1,18 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EmployeeList from "./pages/EmployeeList";
 import CreateEmployee from "./pages/CreateEmployee";
+import Nav from "./components/Nav";
 
 function App() {
   return (
     <Router>
-      <>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/employee-list">Employee List</Link>
-        </nav>
+      <Nav />
+      <div className="main-content">
         <Routes>
           <Route path="/" element={<CreateEmployee />} />
           <Route path="/employee-list" element={<EmployeeList />} />
         </Routes>
-      </>
+      </div>
     </Router>
   );
 }

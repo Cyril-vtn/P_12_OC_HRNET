@@ -1,0 +1,28 @@
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: #ecf0f1;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #3498db;
+}
+
+.nav-link.active {
+  color: #3498db;
+}
+
+.title {
+  color: #ecf0f1;
+  font-size: 2rem;
+  font-weight: bold;
+}
