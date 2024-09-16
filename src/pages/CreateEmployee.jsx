@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Add this import
+import Modal from "../components/Modal";
 import "../App.css";
 
 const CreateEmployee = () => {
@@ -15,6 +15,8 @@ const CreateEmployee = () => {
     department: "",
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEmployee({ ...employee, [name]: value });
@@ -28,7 +30,7 @@ const CreateEmployee = () => {
     const employees = JSON.parse(localStorage.getItem("employees") || "[]");
     employees.push(employee);
     localStorage.setItem("employees", JSON.stringify(employees));
-    alert("Employee Created!");
+    setIsModalOpen(true);
   };
 
   return (
@@ -114,7 +116,12 @@ const CreateEmployee = () => {
         </select>
       </form>
       <button onClick={saveEmployee}>Save</button>
-      <Link to="/employee-list">View Employee List</Link> {/* Add this link */}
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        message="Employee Created!"
+      />
     </div>
   );
 };
