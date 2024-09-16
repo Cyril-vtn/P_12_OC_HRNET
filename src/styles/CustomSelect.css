@@ -21,10 +21,6 @@
   transition: border-color 0.3s ease;
 }
 
-.select-header:hover {
-  border-color: #6b7280;
-}
-
 .select-options {
   position: absolute;
   left: 0;
