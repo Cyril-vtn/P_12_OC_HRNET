@@ -22,10 +22,6 @@ const CreateEmployee = () => {
     setEmployee({ ...employee, [name]: value });
   };
 
-  // const handleDateChange = (name, date) => {
-  //   setEmployee({ ...employee, [name]: date });
-  // };
-
   const saveEmployee = () => {
     const employees = JSON.parse(localStorage.getItem("employees") || "[]");
     employees.push(employee);
@@ -35,8 +31,10 @@ const CreateEmployee = () => {
 
   return (
     <div className="container">
-      <h2>Create Employee</h2>
+      <h2 className="title">Create Employee</h2>
       <form>
+        <div className="form-row">
+          <div className="form-group">
         <label htmlFor="firstName">First Name</label>
         <input
           type="text"
@@ -45,7 +43,8 @@ const CreateEmployee = () => {
           value={employee.firstName}
           onChange={handleChange}
         />
-
+          </div>
+          <div className="form-group">
         <label htmlFor="lastName">Last Name</label>
         <input
           type="text"
@@ -54,15 +53,20 @@ const CreateEmployee = () => {
           value={employee.lastName}
           onChange={handleChange}
         />
+          </div>
+        </div>
 
+        <div className="form-row">
+          <div className="form-group">
         <label htmlFor="dateOfBirth">Date of Birth</label>
-        {/* <DatePicker selected={employee.dateOfBirth} onChange={(date) => handleDateChange('dateOfBirth', date)} /> */}
-
+          </div>
+          <div className="form-group">
         <label htmlFor="startDate">Start Date</label>
-        {/* <DatePicker selected={employee.startDate} onChange={(date) => handleDateChange('startDate', date)} /> */}
+          </div>
 
         <fieldset className="address">
           <legend>Address</legend>
+          <div className="form-group">
           <label htmlFor="street">Street</label>
           <input
             type="text"
@@ -71,7 +75,9 @@ const CreateEmployee = () => {
             value={employee.street}
             onChange={handleChange}
           />
-
+          </div>
+          <div className="form-row">
+            <div className="form-group">
           <label htmlFor="city">City</label>
           <input
             type="text"
@@ -80,17 +86,19 @@ const CreateEmployee = () => {
             value={employee.city}
             onChange={handleChange}
           />
-
-          <label htmlFor="state">State</label>
+            </div>
+            <div className="form-group">
           <select
             id="state"
             name="state"
             value={employee.state}
             onChange={handleChange}
-          >
-            {/* Add state options here */}
-          </select>
-
+                name="state"
+                position="bottom"
+              />
+            </div>
+          </div>
+          <div className="form-group">
           <label htmlFor="zipCode">Zip Code</label>
           <input
             type="number"
@@ -99,6 +107,7 @@ const CreateEmployee = () => {
             value={employee.zipCode}
             onChange={handleChange}
           />
+          </div>
         </fieldset>
 
         <label htmlFor="department">Department</label>
@@ -107,13 +116,9 @@ const CreateEmployee = () => {
           name="department"
           value={employee.department}
           onChange={handleChange}
-        >
-          <option>Sales</option>
-          <option>Marketing</option>
-          <option>Engineering</option>
-          <option>Human Resources</option>
-          <option>Legal</option>
-        </select>
+          name="department"
+          position="top"
+        />
       </form>
       <button onClick={saveEmployee}>Save</button>
 
