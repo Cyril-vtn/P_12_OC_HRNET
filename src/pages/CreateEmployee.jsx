@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "../components/Modal";
 import "../App.css";
+import CustomSelect from "../components/CustomSelect";
 
 const CreateEmployee = () => {
   const [employee, setEmployee] = useState({
@@ -88,9 +89,9 @@ const CreateEmployee = () => {
           />
             </div>
             <div className="form-group">
-          <select
-            id="state"
-            name="state"
+              <CustomSelect
+                label="State"
+                options={states}
             value={employee.state}
             onChange={handleChange}
                 name="state"
@@ -110,10 +111,9 @@ const CreateEmployee = () => {
           </div>
         </fieldset>
 
-        <label htmlFor="department">Department</label>
-        <select
-          id="department"
-          name="department"
+        <CustomSelect
+          label="Department"
+          options={departments}
           value={employee.department}
           onChange={handleChange}
           name="department"

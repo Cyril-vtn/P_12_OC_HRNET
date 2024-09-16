@@ -1,0 +1,94 @@
+.custom-select {
+  position: relative;
+  width: 100%;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #3a3a3a;
+  color: #ffffff;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.select-header:hover {
+  border-color: #3498db;
+}
+
+.select-options {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #2a2a2a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.select-options.top {
+  bottom: 100%;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select-options.bottom {
+  top: 100%;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select-option {
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.select-option:hover {
+  background-color: #3a3a3a;
+}
+
+.select-option.selected {
+  background-color: #4a4a4a;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 0.8em;
+  transition: transform 0.3s ease;
+}
+
+.custom-select.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* Scrollbar styles for WebKit browsers */
+.select-options::-webkit-scrollbar {
+  width: 8px;
+}
+
+.select-options::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+.select-options::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a;
+  border-radius: 4px;
+}
+
+.select-options::-webkit-scrollbar-thumb:hover {
+  background-color: #646cff;
+}
