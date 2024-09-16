@@ -22,7 +22,11 @@ const CreateEmployee = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmployee({ ...employee, [name]: value });
+    if (name === "dateOfBirth" || name === "startDate") {
+      setEmployee({ ...employee, [name]: new Date(value) });
+    } else {
+      setEmployee({ ...employee, [name]: value });
+    }
   };
 
   const saveEmployee = () => {
