@@ -36,8 +36,8 @@ const CustomSelect = ({
   };
 
   return (
-    <div className={`custom-select ${isOpen ? "open" : ""}`} ref={selectRef}>
-      <label htmlFor={name}>{label}</label>
+    <div className="custom-select" ref={selectRef}>
+      {label && <label>{label}</label>}
       <div className="select-wrapper">
         <div className="select-header" onClick={handleToggle}>
           <span>{selectedOption.label}</span>
@@ -64,14 +64,9 @@ const CustomSelect = ({
 };
 
 CustomSelect.propTypes = {
-  label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  value: PropTypes.string.isRequired,
+  label: PropTypes.string, // Remove .isRequired
+  options: PropTypes.array.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   position: PropTypes.oneOf(["top", "bottom"]),
