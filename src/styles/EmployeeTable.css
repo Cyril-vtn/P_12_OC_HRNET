@@ -1,0 +1,81 @@
+input,
+select {
+  margin-bottom: 0;
+}
+.employee-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.employee-table th,
+.employee-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.employee-table th {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.employee-table th:hover {
+  background-color: #3c3c3c;
+}
+
+.employee-table th::after {
+  content: attr(data-sort);
+  margin-left: 5px;
+  font-size: 0.8em;
+}
+
+.employee-table tr {
+  background-color: #2a2a2a;
+  transition: background-color 0.3s ease;
+}
+
+.employee-table tr:hover {
+  background-color: #3a3a3a;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination-buttons button {
+  margin: 0 0.5rem;
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-buttons button:hover {
+  background-color: #4a4a4a;
+}
