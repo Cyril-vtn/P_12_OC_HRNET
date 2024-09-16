@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Modal from "../components/Modal";
+import DatePicker from "../components/DatePicker";
 import "../App.css";
 import CustomSelect from "../components/CustomSelect";
+import { departments, states } from "../data/data";
 
 const CreateEmployee = () => {
   const [employee, setEmployee] = useState({
@@ -36,78 +38,91 @@ const CreateEmployee = () => {
       <form>
         <div className="form-row">
           <div className="form-group">
-        <label htmlFor="firstName">First Name</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={employee.firstName}
-          onChange={handleChange}
-        />
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={employee.firstName}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={employee.lastName}
-          onChange={handleChange}
-        />
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={employee.lastName}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
         <div className="form-row">
           <div className="form-group">
-        <label htmlFor="dateOfBirth">Date of Birth</label>
+            <label htmlFor="dateOfBirth">Date of Birth</label>
+            <DatePicker
+              id="dateOfBirth"
+              name="dateOfBirth"
+              value={employee.dateOfBirth}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-group">
-        <label htmlFor="startDate">Start Date</label>
+            <label htmlFor="startDate">Start Date</label>
+            <DatePicker
+              id="startDate"
+              name="startDate"
+              value={employee.startDate}
+              onChange={handleChange}
+            />
           </div>
+        </div>
 
         <fieldset className="address">
           <legend>Address</legend>
           <div className="form-group">
-          <label htmlFor="street">Street</label>
-          <input
-            type="text"
-            id="street"
-            name="street"
-            value={employee.street}
-            onChange={handleChange}
-          />
+            <label htmlFor="street">Street</label>
+            <input
+              type="text"
+              id="street"
+              name="street"
+              value={employee.street}
+              onChange={handleChange}
+            />
           </div>
           <div className="form-row">
             <div className="form-group">
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={employee.city}
-            onChange={handleChange}
-          />
+              <label htmlFor="city">City</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                value={employee.city}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group">
               <CustomSelect
                 label="State"
                 options={states}
-            value={employee.state}
-            onChange={handleChange}
+                value={employee.state}
+                onChange={handleChange}
                 name="state"
                 position="bottom"
               />
             </div>
           </div>
           <div className="form-group">
-          <label htmlFor="zipCode">Zip Code</label>
-          <input
-            type="number"
-            id="zipCode"
-            name="zipCode"
-            value={employee.zipCode}
-            onChange={handleChange}
-          />
+            <label htmlFor="zipCode">Zip Code</label>
+            <input
+              type="number"
+              id="zipCode"
+              name="zipCode"
+              value={employee.zipCode}
+              onChange={handleChange}
+            />
           </div>
         </fieldset>
 

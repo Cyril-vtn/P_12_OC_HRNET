@@ -1,0 +1,78 @@
+.date-picker {
+  position: relative;
+  width: 100%;
+}
+
+.date-picker input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3a3a3a;
+  color: #ffffff;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  background-color: #2a2a2a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  padding: 1rem;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-header button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day,
+.empty-day {
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.day:hover {
+  background-color: #3a3a3a;
+}
