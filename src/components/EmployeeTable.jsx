@@ -94,6 +94,7 @@ const EmployeeTable = ({ employees }) => {
             name="entriesPerPage"
             position="bottom"
           />
+          entries
         </div>
         <div className="search-control">
           Search:

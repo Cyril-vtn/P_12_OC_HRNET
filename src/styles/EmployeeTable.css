@@ -15,7 +15,6 @@ select {
 .employee-table-container {
   width: 100%;
   overflow-x: auto;
-  background-color: #1e1e1e;
   color: #e0e0e0;
   padding: 1rem;
   border-radius: 8px;
@@ -26,17 +25,30 @@ select {
   justify-content: space-between;
   margin-bottom: 1rem;
 }
+.search-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.entries-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 .employee-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px;
+  border-spacing: 0 0px;
+  border: 1px solid #444;
 }
 
 .employee-table th,
 .employee-table td {
   padding: 12px;
   text-align: left;
+  border-bottom: 1px solid #444;
 }
 
 .employee-table th {
@@ -47,10 +59,13 @@ select {
   cursor: pointer;
   user-select: none;
   transition: background-color 0.3s ease;
+  border-bottom: 1px solid #444;
+  border-left: 1px solid #444;
+  text-wrap: nowrap;
 }
 
-.employee-table th:hover {
-  background-color: #3c3c3c;
+.employee-table th:first-child {
+  border-left: none;
 }
 
 .employee-table th::after {
