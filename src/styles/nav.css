@@ -10,15 +10,15 @@
   text-decoration: none;
   margin: 0 0.5rem;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #3498db;
+  color: #9ca3af;
 }
 
 .nav-link.active {
-  color: #3498db;
+  color: #6b7280;
 }
 
 .title {
