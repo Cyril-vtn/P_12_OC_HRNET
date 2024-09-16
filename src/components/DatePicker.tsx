@@ -30,7 +30,8 @@ const DatePicker = ({ value, onChange, name }) => {
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      day
+      day,
+      12 // Set to noon to avoid timezone issues
     );
     onChange({ target: { name, value: newDate.toISOString().split("T")[0] } });
     setIsOpen(false);
@@ -51,6 +52,7 @@ const DatePicker = ({ value, onChange, name }) => {
     handleMonthChange(increment);
   };
 
+  // Render the calendar
   const renderCalendar = () => {
     const days: JSX.Element[] = [];
     const firstDay = new Date(
@@ -63,19 +65,53 @@ const DatePicker = ({ value, onChange, name }) => {
       currentDate.getMonth()
     );
 
+    // Add empty days before the first day of the month
     for (let i = 0; i < firstDay; i++) {
       days.push(<div key={`empty-${i}`} className="empty-day"></div>);
     }
 
+    // Add days of the month
     for (let i = 1; i <= totalDays; i++) {
+      const dateToCompare = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        i,
+        12
+      );
+
+      // Compare the date to the value
+      const valueDate =
+        value instanceof Date
+          ? new Date(value.getFullYear(), value.getMonth(), value.getDate(), 12)
+          : null;
+
+      // Check if the date is selected
+      const isSelected =
+        valueDate && dateToCompare.getTime() === valueDate.getTime();
+
+      // Add the day to the calendar
       days.push(
-        <div key={i} className="day" onClick={() => handleDateClick(i)}>
+        <div
+          key={i}
+          className={`day ${isSelected ? "selected" : ""}`}
+          onClick={() => handleDateClick(i)}
+        >
           {i}
         </div>
       );
     }
 
     return days;
+  };
+
+  const handleInputClick = () => {
+    if (!isOpen) {
+      // Update currentDate when opening the calendar
+      setCurrentDate(
+        value instanceof Date ? value : new Date(value || Date.now())
+      );
+    }
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -85,7 +121,7 @@ const DatePicker = ({ value, onChange, name }) => {
         value={
           value instanceof Date ? value.toISOString().split("T")[0] : value
         }
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleInputClick}
         readOnly
       />
       {isOpen && (

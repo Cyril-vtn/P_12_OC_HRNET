@@ -79,9 +79,14 @@
   align-items: center;
   cursor: pointer;
   border-radius: 50%;
-  transition: background-color 0.2s ease;
 }
 
 .day:hover {
   background-color: #3a3a3a;
+}
+
+.day.selected {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
 }
