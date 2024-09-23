@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import "../styles/DatePicker.css";
 
 const DatePicker = ({ value, onChange, name }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // Initialize currentDate with the provided value or current date
   const [currentDate, setCurrentDate] = useState(
     value instanceof Date ? value : new Date(value || Date.now())
   );
-  const datePickerRef = useRef<HTMLDivElement | null>(null);
+  const datePickerRef = useRef(null);
 
+  // Effect to handle clicking outside the date picker
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event) => {
       if (
         datePickerRef.current &&
-        !datePickerRef.current.contains(event.target as Node)
+        !datePickerRef.current.contains(event.target)
       ) {
         setIsOpen(false);
       }
@@ -23,10 +25,10 @@ const DatePicker = ({ value, onChange, name }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const daysInMonth = (year: number, month: number) =>
-    new Date(year, month + 1, 0).getDate();
+  // Helper function to get the number of days in a month
+  const daysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
 
-  const handleDateClick = (day: number) => {
+  const handleDateClick = (day) => {
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -37,24 +39,21 @@ const DatePicker = ({ value, onChange, name }) => {
     setIsOpen(false);
   };
 
-  const handleMonthChange = (increment: number) => {
+  const handleMonthChange = (increment) => {
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() + increment, 1)
     );
   };
 
-  // Add this new function to handle arrow button clicks
-  const handleArrowClick = (e: React.MouseEvent) => {
+  const handleArrowClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    const increment =
-      (e.currentTarget as HTMLButtonElement).textContent === "<" ? -1 : 1;
+    const increment = e.currentTarget.textContent === "<" ? -1 : 1;
     handleMonthChange(increment);
   };
 
-  // Render the calendar
   const renderCalendar = () => {
-    const days: JSX.Element[] = [];
+    const days = [];
     const firstDay = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -65,12 +64,12 @@ const DatePicker = ({ value, onChange, name }) => {
       currentDate.getMonth()
     );
 
-    // Add empty days before the first day of the month
+    // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDay; i++) {
       days.push(<div key={`empty-${i}`} className="empty-day"></div>);
     }
 
-    // Add days of the month
+    // Render each day of the month
     for (let i = 1; i <= totalDays; i++) {
       const dateToCompare = new Date(
         currentDate.getFullYear(),
@@ -78,18 +77,15 @@ const DatePicker = ({ value, onChange, name }) => {
         i,
         12
       );
-
-      // Compare the date to the value
       const valueDate =
         value instanceof Date
           ? new Date(value.getFullYear(), value.getMonth(), value.getDate(), 12)
           : null;
 
-      // Check if the date is selected
+      // Check if this day is the selected date
       const isSelected =
         valueDate && dateToCompare.getTime() === valueDate.getTime();
 
-      // Add the day to the calendar
       days.push(
         <div
           key={i}
@@ -104,6 +100,7 @@ const DatePicker = ({ value, onChange, name }) => {
     return days;
   };
 
+  // Handle input click to open/close the calendar
   const handleInputClick = () => {
     if (!isOpen) {
       // Update currentDate when opening the calendar
