@@ -19,17 +19,36 @@ const CreateEmployee = () => {
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "dateOfBirth" || name === "startDate") {
-      setEmployee({ ...employee, [name]: new Date(value) });
-    } else {
-      setEmployee({ ...employee, [name]: value });
-    }
+    setEmployee({ ...employee, [name]: value });
+    setErrors({ ...errors, [name]: "" });
   };
 
-  const saveEmployee = () => {
+  const validate = () => {
+    const newErrors = {};
+    if (!employee.firstName) newErrors.firstName = "First Name is required";
+    if (!employee.lastName) newErrors.lastName = "Last Name is required";
+    if (!employee.dateOfBirth)
+      newErrors.dateOfBirth = "Date of Birth is required";
+    if (!employee.startDate) newErrors.startDate = "Start Date is required";
+    if (!employee.street) newErrors.street = "Street is required";
+    if (!employee.city) newErrors.city = "City is required";
+    if (!employee.state) newErrors.state = "State is required";
+    if (!employee.zipCode) newErrors.zipCode = "Zip Code is required";
+    if (!employee.department) newErrors.department = "Department is required";
+    return newErrors;
+  };
+
+  const saveEmployee = (e) => {
+    e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     const employees = JSON.parse(localStorage.getItem("employees") || "[]");
     employees.push(employee);
     localStorage.setItem("employees", JSON.stringify(employees));
@@ -39,7 +58,7 @@ const CreateEmployee = () => {
   return (
     <div className="container">
       <h2 className="title">Create Employee</h2>
-      <form>
+      <form onSubmit={saveEmployee}>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="firstName">First Name</label>
@@ -50,6 +69,11 @@ const CreateEmployee = () => {
               value={employee.firstName}
               onChange={handleChange}
             />
+            {errors.firstName && (
+              <div className="error-container">
+                <span className="error">{errors.firstName}</span>
+              </div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="lastName">Last Name</label>
@@ -60,9 +84,13 @@ const CreateEmployee = () => {
               value={employee.lastName}
               onChange={handleChange}
             />
+            {errors.lastName && (
+              <div className="error-container">
+                <span className="error">{errors.lastName}</span>
+              </div>
+            )}
           </div>
         </div>
-
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="dateOfBirth">Date of Birth</label>
@@ -72,6 +100,11 @@ const CreateEmployee = () => {
               value={employee.dateOfBirth}
               onChange={handleChange}
             />
+            {errors.dateOfBirth && (
+              <div className="error-container">
+                <span className="error">{errors.dateOfBirth}</span>
+              </div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="startDate">Start Date</label>
@@ -81,9 +114,13 @@ const CreateEmployee = () => {
               value={employee.startDate}
               onChange={handleChange}
             />
+            {errors.startDate && (
+              <div className="error-container">
+                <span className="error">{errors.startDate}</span>
+              </div>
+            )}
           </div>
         </div>
-
         <fieldset className="address">
           <legend>Address</legend>
           <div className="form-group">
@@ -97,6 +134,11 @@ const CreateEmployee = () => {
               value={employee.street}
               onChange={handleChange}
             />
+            {errors.street && (
+              <div className="error-container">
+                <span className="error">{errors.street}</span>
+              </div>
+            )}
           </div>
           <div className="form-row">
             <div className="form-group">
@@ -108,6 +150,11 @@ const CreateEmployee = () => {
                 value={employee.city}
                 onChange={handleChange}
               />
+              {errors.city && (
+                <div className="error-container">
+                  <span className="error">{errors.city}</span>
+                </div>
+              )}
             </div>
             <div className="form-group">
               <CustomSelect
@@ -118,6 +165,11 @@ const CreateEmployee = () => {
                 name="state"
                 position="bottom"
               />
+              {errors.state && (
+                <div className="error-container">
+                  <span className="error">{errors.state}</span>
+                </div>
+              )}
             </div>
           </div>
           <div className="form-group">
@@ -129,9 +181,13 @@ const CreateEmployee = () => {
               value={employee.zipCode}
               onChange={handleChange}
             />
+            {errors.zipCode && (
+              <div className="error-container">
+                <span className="error">{errors.zipCode}</span>
+              </div>
+            )}
           </div>
         </fieldset>
-
         <CustomSelect
           label="Department"
           options={departments}
@@ -140,11 +196,15 @@ const CreateEmployee = () => {
           name="department"
           position="top"
         />
+        {errors.department && (
+          <div className="error-container">
+            <span className="error">{errors.department}</span>
+          </div>
+        )}
+        <button className="save-button" type="submit">
+          Save
+        </button>
       </form>
-      <button className="save-button" onClick={saveEmployee}>
-        Save
-      </button>
-
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

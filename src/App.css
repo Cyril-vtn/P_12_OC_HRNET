@@ -64,6 +64,8 @@ label {
   font-weight: 600;
   transition: all 0.2s ease;
   margin-top: 1rem;
+  display: block;
+  width: 100%;
 }
 .save-button:hover {
   background-color: #555;
@@ -121,6 +123,7 @@ select:focus {
 
 .form-group {
   flex: 1;
+  text-align: left;
 }
 
 .form-row {
@@ -138,4 +141,17 @@ select:focus {
   .form-row > * {
     width: 100%;
   }
+}
+
+.error-container {
+  position: relative;
+  height: 1.5rem; /* Adjust this value as needed */
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
