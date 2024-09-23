@@ -53,6 +53,17 @@ const CreateEmployee = () => {
     employees.push(employee);
     localStorage.setItem("employees", JSON.stringify(employees));
     setIsModalOpen(true);
+    setEmployee({
+      firstName: "",
+      lastName: "",
+      dateOfBirth: new Date(),
+      startDate: new Date(),
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      department: "",
+    });
   };
 
   return (
