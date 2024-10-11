@@ -19,6 +19,11 @@
   text-align: center;
 }
 
+.modal-content h2 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
 .modal-content button {
   margin-top: 10px;
   background-color: #333;
