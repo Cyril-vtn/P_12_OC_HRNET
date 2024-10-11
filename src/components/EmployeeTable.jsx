@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import "../styles/EmployeeTable.css";
-import CustomSelect from "./CustomSelect";
+import Select from "@cyril-vtn/select";
 
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -82,17 +82,15 @@ const EmployeeTable = ({ employees }) => {
       <div className="table-controls">
         <div className="entries-control">
           Show
-          <CustomSelect
+          <Select
             options={[
-              { value: 10, label: "10" },
-              { value: 25, label: "25" },
-              { value: 50, label: "50" },
-              { value: 100, label: "100" },
+              { value: "10", label: "10" },
+              { value: "25", label: "25" },
+              { value: "50", label: "50" },
+              { value: "100", label: "100" },
             ]}
             value={entriesPerPage}
-            onChange={(e) => setEntriesPerPage(Number(e.target.value))}
-            name="entriesPerPage"
-            position="bottom"
+            onChange={(value) => setEntriesPerPage(value)}
           />
           entries
         </div>

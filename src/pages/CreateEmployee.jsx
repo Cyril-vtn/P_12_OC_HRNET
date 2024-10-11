@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Modal from "../components/Modal";
 import DatePicker from "../components/DatePicker";
 import "../App.css";
-import CustomSelect from "../components/CustomSelect";
 import { departments, states } from "../data/data";
+import Modal from "@cyril-vtn/react-modal";
+import "../styles/Modal.css";
+import Select from "@cyril-vtn/select";
 
 const CreateEmployee = () => {
   const [employee, setEmployee] = useState({
@@ -23,6 +24,14 @@ const CreateEmployee = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    console.log(name, value);
+    setEmployee({ ...employee, [name]: value });
+    setErrors({ ...errors, [name]: "" });
+  };
+
+  const handleSelectChange = (value, name) => {
+    console.log(value, name);
     setEmployee({ ...employee, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
@@ -168,13 +177,14 @@ const CreateEmployee = () => {
               )}
             </div>
             <div className="form-group">
-              <CustomSelect
-                label="State"
+              <label htmlFor="state">State</label>
+              <Select
+                id="state"
+                name="state"
                 options={states}
                 value={employee.state}
-                onChange={handleChange}
-                name="state"
-                position="bottom"
+                onChange={(value) => handleSelectChange(value, "state")}
+                placeholder="Select a state"
               />
               {errors.state && (
                 <div className="error-container">
@@ -199,28 +209,39 @@ const CreateEmployee = () => {
             )}
           </div>
         </fieldset>
-        <CustomSelect
-          label="Department"
-          options={departments}
-          value={employee.department}
-          onChange={handleChange}
-          name="department"
-          position="top"
-        />
-        {errors.department && (
-          <div className="error-container">
-            <span className="error">{errors.department}</span>
-          </div>
-        )}
+        <div className="form-group">
+          <label htmlFor="department">Department</label>
+          <Select
+            id="department"
+            name="department"
+            options={departments}
+            value={employee.department}
+            onChange={(value) => handleSelectChange(value, "department")}
+            placeholder="Select a department"
+          />
+          {errors.department && (
+            <div className="error-container">
+              <span className="error">{errors.department}</span>
+            </div>
+          )}
+        </div>
         <button className="save-button" type="submit">
           Save
         </button>
       </form>
       <Modal
         isOpen={isModalOpen}
+        contentLabel="Employee Created"
+        className="modal-content"
+        overlayClassName="modal-background"
+        modalBackgroundColor="#161616"
+        showCloseButton={false}
+        closeOnEscape={true}
         onClose={() => setIsModalOpen(false)}
-        message="Employee Created!"
-      />
+      >
+        <h2>Employee Created</h2>
+        <button onClick={() => setIsModalOpen(false)}>Close</button>
+      </Modal>
     </div>
   );
 };

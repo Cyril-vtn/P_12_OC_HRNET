@@ -155,3 +155,21 @@ select:focus {
   top: 0;
   left: 0;
 }
+
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
+.select-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #3a3a3a;
+  color: #ffffff;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
