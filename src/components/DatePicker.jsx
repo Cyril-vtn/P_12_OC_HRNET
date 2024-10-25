@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import "../styles/DatePicker.css";
+import "../styles/datePicker.css";
 
 const DatePicker = ({ value, onChange, name }) => {
   const [isOpen, setIsOpen] = useState(false);
