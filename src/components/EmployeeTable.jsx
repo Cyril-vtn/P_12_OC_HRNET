@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
 import "../styles/EmployeeTable.css";
 import Select from "@cyril-vtn/select";
 
@@ -202,10 +201,6 @@ const EmployeeTable = ({ employees }) => {
       </div>
     </div>
   );
-};
-
-EmployeeTable.propTypes = {
-  employees: PropTypes.array.isRequired,
 };
 
 export default EmployeeTable;
