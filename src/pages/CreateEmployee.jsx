@@ -185,6 +185,7 @@ const CreateEmployee = () => {
                 value={employee.state}
                 onChange={(value) => handleSelectChange(value, "state")}
                 placeholder="Select a state"
+                style={{ width: "100%" }}
               />
               {errors.state && (
                 <div className="error-container">
@@ -218,6 +219,7 @@ const CreateEmployee = () => {
             value={employee.department}
             onChange={(value) => handleSelectChange(value, "department")}
             placeholder="Select a department"
+            style={{ width: "100%" }}
           />
           {errors.department && (
             <div className="error-container">

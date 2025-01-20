@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cyril-vtn/date-picker':
-        specifier: ^1.0.6
-        version: 1.0.6
+        specifier: ^1.0.8
+        version: 1.0.8
       '@cyril-vtn/react-modal':
         specifier: ^1.0.1
         version: 1.0.1
@@ -151,8 +151,8 @@ packages:
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
 
-  '@cyril-vtn/date-picker@1.0.6':
-    resolution: {integrity: sha512-Vrd6Yh47mBo/usm7DqW+6qeHZ3Zlmh46TtMuDqYSGArwoX2WwUOo/6W3/6xQb7SSrcT5Fr2ezfrm4xoloMow7Q==}
+  '@cyril-vtn/date-picker@1.0.8':
+    resolution: {integrity: sha512-JH1y1f1n9pHIWWtr25h9KX/4pm7M6X9cEQJV7VHahg5PwkULvgLLi5Lekn+QkeArxLASokylL5ciTdc+p14k1A==}
 
   '@cyril-vtn/react-modal@1.0.1':
     resolution: {integrity: sha512-EOqH96USYD5VgRJWXlll198sbEN+15ykTycRsOwH06CL27jCn0Q87nFYE1ffmUYSVEWK3mcW2Os7EDg5Xcjlig==}
@@ -1498,7 +1498,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@cyril-vtn/date-picker@1.0.6': {}
+  '@cyril-vtn/date-picker@1.0.8': {}
 
   '@cyril-vtn/react-modal@1.0.1':
     dependencies:

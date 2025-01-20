@@ -6,7 +6,7 @@
 }
 
 .nav-link {
-  color: #ecf0f1;
+  color: #9ca3af;
   text-decoration: none;
   margin: 0 0.5rem;
   border-radius: 4px;
@@ -14,7 +14,7 @@
 }
 
 .nav-link:hover {
-  color: #9ca3af;
+  color: #6b7280;
 }
 
 .nav-link.active {
