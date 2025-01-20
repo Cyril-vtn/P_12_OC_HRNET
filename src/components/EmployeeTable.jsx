@@ -10,11 +10,11 @@ const formatDate = (dateString) => {
 const EmployeeTable = ({ employees }) => {
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
   const [searchTerm, setSearchTerm] = useState("");
-  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [entriesPerPage, setEntriesPerPage] = useState("10");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortConfig, setSortConfig] = useState({
-    key: null,
-    direction: "ascending",
+    key: "firstName",
+    direction: "descending",
   });
 
   useEffect(() => {
