@@ -4,6 +4,7 @@ import { departments, states } from "../data/data";
 import Modal from "@cyril-vtn/react-modal";
 import "../styles/modal.css";
 import Select from "@cyril-vtn/select";
+import useEmployeeStore from "../store/employeeStore";
 import DatePicker from "../components/DatePicker";
 
 const CreateEmployee = () => {
@@ -58,9 +59,9 @@ const CreateEmployee = () => {
       setErrors(newErrors);
       return;
     }
-    const employees = JSON.parse(localStorage.getItem("employees") || "[]");
-    employees.push(employee);
-    localStorage.setItem("employees", JSON.stringify(employees));
+
+    useEmployeeStore.getState().addEmployee(employee);
+
     setIsModalOpen(true);
     setEmployee({
       firstName: "",

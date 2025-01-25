@@ -1,7 +1,8 @@
 import EmployeeTable from "../components/EmployeeTable";
+import useEmployeeStore from "../store/employeeStore";
 
 const EmployeeList = () => {
-  const employees = JSON.parse(localStorage.getItem("employees")) || [];
+  const employees = useEmployeeStore((state) => state.employees);
 
   return (
     <div className="employee-list-container">
