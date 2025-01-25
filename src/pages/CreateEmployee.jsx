@@ -11,7 +11,7 @@ const CreateEmployee = () => {
   const [employee, setEmployee] = useState({
     firstName: "",
     lastName: "",
-    dateOfBirth: new Date(),
+    dateOfBirth: new Date(1990, 0, 1, 12, 0, 0, 0),
     startDate: new Date(),
     street: "",
     city: "",
@@ -66,7 +66,7 @@ const CreateEmployee = () => {
     setEmployee({
       firstName: "",
       lastName: "",
-      dateOfBirth: new Date(),
+      dateOfBirth: new Date(1990, 0, 1, 12, 0, 0, 0),
       startDate: new Date(),
       street: "",
       city: "",
