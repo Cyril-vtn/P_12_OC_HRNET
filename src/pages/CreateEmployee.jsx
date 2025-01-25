@@ -4,7 +4,7 @@ import { departments, states } from "../data/data";
 import Modal from "@cyril-vtn/react-modal";
 import "../styles/modal.css";
 import Select from "@cyril-vtn/select";
-import DatePicker from "@cyril-vtn/date-picker";
+import DatePicker from "../components/DatePicker";
 
 const CreateEmployee = () => {
   const [employee, setEmployee] = useState({

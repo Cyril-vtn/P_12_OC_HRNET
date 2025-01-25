@@ -1,14 +1,106 @@
 import { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import "../styles/datePicker.css";
 
 const DatePicker = ({ value, onChange, name }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // Initialize currentDate with the provided value or current date
+  const [inputValue, setInputValue] = useState(
+    value instanceof Date ? value.toISOString().split("T")[0] : value
+  );
   const [currentDate, setCurrentDate] = useState(
     value instanceof Date ? value : new Date(value || Date.now())
   );
   const datePickerRef = useRef(null);
+
+  const formatDateInput = (input) => {
+    // Remove any non-digit characters
+    const numbers = input.replace(/\D/g, "");
+    const previousValue = inputValue;
+
+    // If we're deleting characters, handle differently
+    if (input.length < previousValue.length) {
+      // Keep hyphens only if necessary
+      let formatted = numbers;
+      if (formatted.length > 4) {
+        formatted = formatted.slice(0, 4) + "-" + formatted.slice(4);
+        if (formatted.length > 7) {
+          formatted = formatted.slice(0, 7) + "-" + formatted.slice(7);
+        }
+      }
+      return formatted;
+    }
+
+    let formatted = "";
+    let year = numbers.slice(0, 4);
+    let month = numbers.slice(4, 6);
+    let day = numbers.slice(6, 8);
+
+    // Format year
+    if (year.length > 0) {
+      formatted += year;
+      if (year.length === 4 && numbers.length > 4) formatted += "-";
+    }
+
+    // Format month
+    if (year.length === 4 && month.length > 0) {
+      let monthNum = parseInt(month);
+      if (monthNum > 12) month = "12";
+      formatted += month;
+      if (month.length === 2 && numbers.length > 6) formatted += "-";
+    }
+
+    // Format day
+    if (month.length === 2 && day.length > 0) {
+      let dayNum = parseInt(day);
+      const maxDays = new Date(parseInt(year), parseInt(month), 0).getDate();
+      if (dayNum > maxDays) day = maxDays.toString();
+      formatted += day;
+    }
+
+    return formatted;
+  };
+
+  const validateDate = (dateString) => {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(dateString)) return false;
+
+    const [year, month, day] = dateString.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+
+    return (
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day
+    );
+  };
+
+  const handleInputChange = (e) => {
+    const formatted = formatDateInput(e.target.value);
+    setInputValue(formatted);
+
+    // Update calendar while typing
+    if (formatted.length >= 4) {
+      const year = parseInt(formatted.slice(0, 4));
+      let month = 0;
+      let day = 1;
+
+      if (formatted.length >= 7) {
+        month = parseInt(formatted.slice(5, 7)) - 1;
+      }
+
+      if (formatted.length === 10) {
+        day = parseInt(formatted.slice(8, 10));
+      }
+
+      const newDate = new Date(year, month, day);
+      setCurrentDate(newDate);
+
+      // If date is complete and valid
+      if (formatted.length === 10 && validateDate(formatted)) {
+        onChange({ target: { name, value: formatted } });
+        setIsOpen(true); // Keep calendar open to see selection
+      }
+    }
+  };
 
   // Effect to handle clicking outside the date picker
   useEffect(() => {
@@ -35,7 +127,9 @@ const DatePicker = ({ value, onChange, name }) => {
       day,
       12 // Set to noon to avoid timezone issues
     );
-    onChange({ target: { name, value: newDate.toISOString().split("T")[0] } });
+    const formattedDate = newDate.toISOString().split("T")[0];
+    setInputValue(formattedDate);
+    onChange({ target: { name, value: formattedDate } });
     setIsOpen(false);
   };
 
@@ -76,15 +170,12 @@ const DatePicker = ({ value, onChange, name }) => {
         currentDate.getMonth(),
         i,
         12
-      );
-      const valueDate =
-        value instanceof Date
-          ? new Date(value.getFullYear(), value.getMonth(), value.getDate(), 12)
-          : null;
+      )
+        .toISOString()
+        .split("T")[0];
 
       // Check if this day is the selected date
-      const isSelected =
-        valueDate && dateToCompare.getTime() === valueDate.getTime();
+      const isSelected = dateToCompare === inputValue;
 
       days.push(
         <div
@@ -100,26 +191,14 @@ const DatePicker = ({ value, onChange, name }) => {
     return days;
   };
 
-  // Handle input click to open/close the calendar
-  const handleInputClick = () => {
-    if (!isOpen) {
-      // Update currentDate when opening the calendar
-      setCurrentDate(
-        value instanceof Date ? value : new Date(value || Date.now())
-      );
-    }
-    setIsOpen(!isOpen);
-  };
-
   return (
     <div className="date-picker" ref={datePickerRef}>
       <input
         type="text"
-        value={
-          value instanceof Date ? value.toISOString().split("T")[0] : value
-        }
-        onClick={handleInputClick}
-        readOnly
+        value={inputValue}
+        onChange={handleInputChange}
+        onClick={() => !isOpen && setIsOpen(true)}
+        placeholder="YYYY-MM-DD"
       />
       {isOpen && (
         <div className="calendar">
@@ -147,13 +226,6 @@ const DatePicker = ({ value, onChange, name }) => {
       )}
     </div>
   );
-};
-
-DatePicker.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
-    .isRequired,
-  onChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
 };
 
 export default DatePicker;
